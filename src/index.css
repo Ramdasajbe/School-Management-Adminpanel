@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+:root {
+  --color-primary: #7abef2; /* Default theme - primary */
+  --color-secondary: #64748b;
+  --color-accent: #f97316;
+  --color-neutral: #374151;
+  --background-primary: #ffffff; /* Default background */
+  --background-secondary: #eff3f4; /* Default secondary background */
+  --text-color-primary: #000000; /* Default text color */
+}
+
+.dark-theme {
+  --color-primary: #1e3a8a; /* Dark theme - primary */
+  --color-secondary: #4b5563;
+  --color-accent: #ea580c;
+  --color-neutral: #1f2937;
+  --background-primary: #1f2937; /* Dark background */
+  --background-secondary: #111827; /* Dark secondary background */
+  --text-color-primary: #ffffff; /* Dark text color */
+}
+
+.custom-theme {
+  --color-primary: #2b6cb0; /* Custom theme - primary */
+  --color-secondary: #4fd1c5;
+  --color-accent: #f6e05e;
+  --color-neutral: #2d3748;
+  --background-primary: #ffffff; /* Custom background color */
+  --background-secondary: #eff3f4; /* Custom secondary background */
+  --text-color-primary: #000000; /* Custom text color */
+}
