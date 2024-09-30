@@ -704,7 +704,7 @@ export default function DashBoard() {
   return (
     <div className="flex flex-col h-screen">
       {/* Top Bar with Toggle Button and User Name */}
-      <div className="flex items-center justify-between h-[10%]  w-full p-2 border-b-2 border-bgSeCo">
+      <div className="flex items-center justify-between w-full p-2 border-b-2 border-bgSeCo h-[10%]">
         <button
           className={`bg-baCo text-teCo transition-all duration-300 transform z-50 ml-8`}
           onClick={toggleSidebar}
@@ -737,74 +737,84 @@ export default function DashBoard() {
         </div>
       </div>
 
-      <div className="flex flex-grow relative h-[90%]">
+      <div className="flex flex-grow relative h-[90%] ">
         {/* Sidebar */}
         <div
-          className={`bg-baCo h-[90%] text-white transition-all duration-300  transform z-50 border-r-2 border-r-bgCoSe ${
+          className={`bg-baCo text-white transition-all duration-300 transform z-50 border-r-2 border-r-bgCoSe ${
             isSidebarOpen
               ? "w-72" // Full width when open
               : "w-0 md:w-16" // Hidden on small screens, collapsed on medium/large screens
           } ${!isSidebarOpen && "hidden sm:block"} sm:${
             isSidebarOpen ? "block" : "hidden"
-          }`}
+          } h-[90%] overflow-hidden relative`}
         >
           {/* Menu Items */}
-          <div className="flex h-[90%] flex-col items-center ">
-            {menuItems.map((item) => (
-              <div
-                key={item.id}
-                className={`flex items-center space-x-4 my-2 py-2 cursor-pointer w-full`}
-                onClick={() => setActiveTab(item.id)}
-              >
-                <div className="flex items-center w-full">
-                  <span
-                    className={` px-5 ${
-                      activeTab === item.id ? "text-blue-500 " : "text-teCo"
-                    }`}
-                  >
-                    {item.icon}
-                  </span>
-
-                  {isSidebarOpen && (
+          <div className="h-[85%] overflow-y-auto hide-scrollbar">
+            <div className="flex flex-col items-center">
+              {menuItems.map((item) => (
+                <div
+                  key={item.id}
+                  className={`flex items-center space-x-4 my-2 py-2 cursor-pointer w-full`}
+                  onClick={() => setActiveTab(item.id)}
+                >
+                  <div className="flex items-center w-full">
                     <span
-                      className={`ml-2  ${
-                        activeTab === item.id ? "text-blue-400 " : "text-teCo"
+                      className={`px-5 ${
+                        activeTab === item.id ? "text-blue-500" : "text-teCo"
                       }`}
                     >
-                      {item.label}
+                      {item.icon}
                     </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="absolute h-[10%]  left-0 w-full ml-5">
-            <div className={`flex items-center cursor-pointer w-full`}>
-              <div className="flex items-center w-full">
-                <ImageWithLoader
-                  src={"https://via.placeholder.com/400"}
-                  alt={"Sample"}
-                  className={" w-10 h-10 object-cover rounded-full"}
-                />
 
-                {isSidebarOpen && (
-                  <div className={`pl-3 flex flex-col items-center`}>
-                    <span className="text-teCo font-medium text-lg">
-                      User Name
-                    </span>
-                    <span className="text-teCo text-sm">Logout</span>
+                    {isSidebarOpen && (
+                      <span
+                        className={`ml-2 ${
+                          activeTab === item.id ? "text-blue-400" : "text-teCo"
+                        }`}
+                      >
+                        {item.label}
+                      </span>
+                    )}
                   </div>
-                )}
-
-                {isSidebarOpen && (
-                  <span className="pl-4 text-red-500 ">
-                    <LogoutIcon />
-                  </span>
-                )}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
+
+          {/* Logout at Bottom */}
+          <div className="absolute  bottom-0 left-0 w-full flex items-center px-4 bg-baCo">
+            <ImageWithLoader
+              src={"https://via.placeholder.com/400"}
+              alt={"Sample"}
+              className={"w-10 h-10 object-cover rounded-full"}
+            />
+
+            {isSidebarOpen && (
+              <div className={`pl-3 flex flex-col items-start`}>
+                <span className="text-teCo font-medium text-lg">User Name</span>
+                <span className="text-teCo text-sm">Logout</span>
+              </div>
+            )}
+
+            {isSidebarOpen && (
+              <span className="pl-4 text-red-500">
+                <LogoutIcon />
+              </span>
+            )}
+          </div>
         </div>
+
+        {/* Custom CSS to Hide Scrollbar */}
+        <style jsx>{`
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+          }
+
+          .hide-scrollbar {
+            -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+          }
+        `}</style>
 
         {/* Main content area */}
         <div
